@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 
-const LoginButton = () => {
+const LoginButton = ({handleLogin}) => {
   return (
     <View className='mt-3'>
         <TouchableOpacity className='self-end mr-8'>
@@ -8,7 +8,7 @@ const LoginButton = () => {
                 Forgot Password?
             </Text>
         </TouchableOpacity>
-        <TouchableOpacity className='bg-black mx-8 items-center h-12 rounded-lg mt-8 justify-center'>
+        <TouchableOpacity onPress={handleLogin} className='bg-black mx-8 items-center h-12 rounded-lg mt-8 justify-center'>
             <Text className='text-white text-xl font-medium'>
                 Login
             </Text>

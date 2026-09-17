@@ -7,6 +7,7 @@ export const login = async (email, password) => {
         const { token, user } = response.data.data
         setAuthToken(token)
         await saveToken(token)
+        console.log(user)
         return user;
     } catch(error) {
         const message = error.response?.data?.message || (error.isNetworkError ? "Network Error. Check your connection." : "Login failed. Please try again.")

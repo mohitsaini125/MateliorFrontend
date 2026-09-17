@@ -9,6 +9,10 @@ const InputCard = ({ item }) => {
             className='flex-1 mx-2 text-black'
             placeholder={item.placeholder}
             placeholderTextColor={"gray"}
+            value={item.value}
+            onChangeText={item.onChangeText}
+            autoCapitalize={item.placeholder === "Email" ? "none" : "sentences"}
+            keyboardType={item.placeholder === "Email" ? "email-address" : "default"}
         />
         {item.eyePresent &&
         <TouchableOpacity>

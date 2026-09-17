@@ -3,10 +3,28 @@ import WelcomeCard from './components/login/WelcomeCard'
 import LoginButton from './components/login/LoginButton'
 import DivLine from './components/login/DivLine'
 import GoogleButton from './components/login/GoogleButton'
-import { useNavigation } from '@react-navigation/native'
 import LoginInputGrid from './components/login/LoginInputGrid'
+import { useState } from 'react'
+import { useAuth } from '../../context/AuthContext'
+import { useNavigation } from '@react-navigation/native'
 
 const LoginScreen = () => {
+    const { login } = useAuth()
+    const [email, setEmail]= useState("")
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState(null)
+    const [submitting, setSubmitting] = useState(false)
+    const handleLogin = async () => {
+        setError(null)
+        setSubmitting(true)
+        try {
+            await login(email, password)
+        } catch(err) {
+            setError(err.messsage)
+        } finally {
+            setSubmitting(false)
+        }
+    }
     const navigation = useNavigation()
   return (
     <View className='flex-1'>
@@ -16,8 +34,8 @@ const LoginScreen = () => {
       />
       <View className='h-[60%] w-[100%] bg-white absolute bottom-0 rounded-t-3xl'>
         <WelcomeCard />
-        <LoginInputGrid />
-        <LoginButton />
+        <LoginInputGrid item = {{email, setEmail, password, setPassword}}/>
+        <LoginButton handleLogin={handleLogin}/>
         <DivLine />
         <GoogleButton />
         <View className='flex-row self-center mt-8'>

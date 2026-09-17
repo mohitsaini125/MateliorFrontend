@@ -2,7 +2,7 @@ export const products = [
     {
         id : 1,
         name : "Steel Chronograph Classic",
-        image : require('../assets/images/products/watch1.png'),
+        image : require("../assets/images/products/watch1.png"),
         price : 3499,
         rating : 4.5,
         liked : false,
