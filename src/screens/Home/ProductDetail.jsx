@@ -6,6 +6,7 @@ import MiddleCard from './components/productDetails/MiddleCard'
 import { ShoppingCart } from 'lucide-react-native'
 import { useEffect, useState } from 'react'
 import { getProductById } from '../../api/services/product.service'
+import { useWishlist } from '../../context/WishlistContext'
 
 export default function ProductDetail() {
     const route = useRoute()
@@ -20,7 +21,7 @@ export default function ProductDetail() {
                 const data = await getProductById(productId)
                 setProduct(data)
             } catch(err) {
-                setError(err)
+                setError(err.message)
             } finally {
                 setIsLoading(false)
             }
@@ -39,7 +40,7 @@ export default function ProductDetail() {
     if(error || !product) {
         return (
             <View className='flex-1 items-center justify-center px-6'>
-                <Text className='text-red-500 text-center'>{Error || "Product not found"}</Text>
+                <Text className='text-red-500 text-center'>{error || "Product not found"}</Text>
             </View>
         )
     }

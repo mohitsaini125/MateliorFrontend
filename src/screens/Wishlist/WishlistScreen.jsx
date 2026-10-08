@@ -1,6 +1,5 @@
 import { ActivityIndicator, FlatList, RefreshControl, Text, View } from "react-native";
 import SearchBar from "../Home/components/SearchBar";
-import { products } from "../../data/products";
 import ProductCard from "../Home/components/ProductCard";
 import { useCallback, useEffect, useState } from "react";
 import { getWishlist } from "../../api/services/wishlist.service";
@@ -15,11 +14,12 @@ export default function Wishlist() {
         try {
             setError(null)
             const data = await getWishlist()
-            setWishlist(data)
+            console.log(data)
+            setWishlist(data?.products || [])
         } catch(err) {
             setError(err.message)
         }
-    })
+    }, [])
 
     useEffect(() => {
         fetchWishlist().finally(() => setIsLoading(false))
@@ -59,7 +59,7 @@ export default function Wishlist() {
                         </>
                     }
                     refreshControl={
-                        <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} tintColor={"fff"}/>
+                        <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} tintColor={"#fff"}/>
                     }
                 />
         </View>

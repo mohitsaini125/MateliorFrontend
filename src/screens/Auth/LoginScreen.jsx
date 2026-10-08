@@ -15,15 +15,15 @@ const LoginScreen = () => {
     const [error, setError] = useState(null)
     const [submitting, setSubmitting] = useState(false)
     const handleLogin = async () => {
-        setError(null)
-        setSubmitting(true)
-        try {
-            await login(email, password)
+      setError(null)
+      setSubmitting(true)
+      try {
+        await login(email, password)
         } catch(err) {
-            setError(err.messsage)
+          setError(err.messsage)
         } finally {
-            setSubmitting(false)
-        }
+          setSubmitting(false)
+      }
     }
     const navigation = useNavigation()
   return (
@@ -35,7 +35,7 @@ const LoginScreen = () => {
       <View className='h-[60%] w-[100%] bg-white absolute bottom-0 rounded-t-3xl'>
         <WelcomeCard />
         <LoginInputGrid item = {{email, setEmail, password, setPassword}}/>
-        <LoginButton handleLogin={handleLogin}/>
+        <LoginButton handleLogin={handleLogin} submitting={submitting}/>
         <DivLine />
         <GoogleButton />
         <View className='flex-row self-center mt-8'>

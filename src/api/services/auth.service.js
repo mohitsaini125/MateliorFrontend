@@ -4,10 +4,10 @@ import { removeToken, saveToken } from "../utils/storage"
 export const login = async (email, password) => {
     try {
         const response = await api.post("/user/login", { email, password })
+        console.log(response)
         const { token, user } = response.data.data
         setAuthToken(token)
         await saveToken(token)
-        console.log(user)
         return user;
     } catch(error) {
         const message = error.response?.data?.message || (error.isNetworkError ? "Network Error. Check your connection." : "Login failed. Please try again.")

@@ -1,3 +1,4 @@
+import { api } from "../apiClient"
 export const getWishlist = async (params = {}) => {
     try {
         const response = await api.get("/wishlist", { params })
