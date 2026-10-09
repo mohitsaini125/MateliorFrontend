@@ -3,11 +3,14 @@ import SearchBar from "../Home/components/SearchBar";
 import ProductCard from "../Home/components/ProductCard";
 import { useCallback, useEffect, useState } from "react";
 import { getWishlist } from "../../api/services/wishlist.service";
+import { useFocusEffect } from "@react-navigation/native";
+import { useWishlist } from "../../context/WishlistContext";
 
 export default function Wishlist() {
     const [wishlist, setWishlist] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [isRefreshing, setIsRefreshing] = useState(false)
+    const { isWishlisted } = useWishlist()
     const [error, setError] = useState(null)
 
     const fetchWishlist = useCallback(async () => {
@@ -21,9 +24,14 @@ export default function Wishlist() {
         }
     }, [])
 
-    useEffect(() => {
-        fetchWishlist().finally(() => setIsLoading(false))
-    }, [fetchWishlist])
+    useFocusEffect(
+        useCallback(() => {
+            setIsLoading(true)
+            fetchWishlist().finally(() => {
+                setIsLoading(false)
+            })
+        }, [fetchWishlist])
+    )
 
     const handleRefresh = async () => {
         setIsRefreshing(true)
@@ -41,8 +49,8 @@ export default function Wishlist() {
     return (
         <View className="flex-1 bg-black"> 
             <FlatList
-                    data={wishlist}
-                    keyExtractor={(item)=> item.id}
+                    data={wishlist.filter((item) => isWishlisted(item._id))}
+                    keyExtractor={(item)=> item._id}
                     renderItem={({item}) => <ProductCard product={item}/>}
                     numColumns={2}
                     contentContainerStyle={{ gap: 12, paddingBottom: 100 }}

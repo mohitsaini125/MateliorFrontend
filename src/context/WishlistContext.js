@@ -42,8 +42,20 @@ export const WishlistProvider = ({children}) => {
         try {
             if(currentlyIn) {
                 await wishlistService.removeFromWishlist(productId)
+
+                setProductIds((prev) => {
+                    const next = new Set(prev)
+                    next.delete(productId)
+                    return next
+                })
             } else {
                 await wishlistService.addToWishlist(productId)
+
+                setProductIds((prev) => {
+                    const next = new Set(prev)
+                    next.add(productId)
+                    return next
+                })
             }
         } catch(err) {
             setProductIds((prev)=>{
