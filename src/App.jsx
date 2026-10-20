@@ -8,7 +8,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <AuthProvider>
- x       <WishlistProvider>
+          <WishlistProvider>
           <AppNavigator/>
         </WishlistProvider>
       </AuthProvider>

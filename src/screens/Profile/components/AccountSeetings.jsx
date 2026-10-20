@@ -8,7 +8,6 @@ const AccountSeetings = () => {
       <Text className='text-xl font-semibold mb-5'>Account Settings</Text>
       <OptionsCard item={{ name : "Addresses", icon : MapPinHouse}}/>
       <OptionsCard item={{ name : "Security & Password", icon : LockKeyhole }}/>
-
       <Text className='text-xl font-semibold mb-5 mt-6'>Account Settings</Text>
       <OptionsCard item={{ name : "Help & Support", icon : Headphones }}/>
       <OptionsCard item={{ name : "About App", icon : Info }}/>

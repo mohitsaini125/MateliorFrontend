@@ -3,13 +3,10 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 
 const ProfileHeader = ({item: {name, profileImg}}) => {
   return (
-    <View>
-        <View className="mt-32 border-4 border-gray-500 rounded-full self-center overflow-hidden">
-            <Image source={require('../../../assets/images/profile/profileImg.png')} className='h-32 w-32 rounded-full '/>
+    <View className='justify-center items-center'>
+        <View className="mt-32 h-24 w-24 border-4 border-gray-500 rounded-full flex-row justify-center items-center overflow-hidden">
+            <Text className='text-5xl font-semibold text-center capitalize'>{name[0]}</Text>
         </View>
-        <TouchableOpacity className="absolute right-[11rem] top-56 bg-gray-300 p-1 rounded-full">
-            <Edit size={18} color={"green"} strokeWidth={2}/>
-        </TouchableOpacity>
         <Text className='text-2xl font-semibold text-center mt-3 capitalize'>{name}</Text>
     </View>
   )
