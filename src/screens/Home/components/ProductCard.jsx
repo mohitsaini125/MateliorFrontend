@@ -23,7 +23,7 @@ export default function ProductCard({product}) {
                 />
                 <View className='absolute right-2 top-2 bg-gray-800 w-8 h-8 rounded-full justify-center items-center'>
                     <Pressable hitSlop={true} onPress={() => toggleWishlist(product._id)}>
-                        <Heart size={20} strokeWidth={1} color={"#9a9a9a"} fill={wishlisted ? "red" : "transparent"}/>
+                        <Heart size={20} strokeWidth={1} color={"#9a9a9a"} fill={wishlisted ? "white" : "transparent"}/>
                     </Pressable>
                 </View>
             </View>

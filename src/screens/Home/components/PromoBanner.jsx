@@ -18,10 +18,11 @@ export default function PromoBanner() {
                 className='w-80 h-80'
                 resizeMode="contain"
                 style={{
-                    position: 'absolute',
-                    right: -30,
-                    top: -65
-                }}
+                position: 'absolute',
+                right: -30,
+                top: -65,
+                pointerEvents: 'none'
+            }}
             />
         </View>
     );
